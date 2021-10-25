@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "name": "positive_post",
+      "title": "positive_title",
+      "content": "positive_content"
+    }
+  ],
+  "test_cases": [
+    {
+      "enabled": true,
+      "test_id": 1,
+      "test_case": "positive_test",
+      "test_category": "positive",
+      "post": "positive_post",
+      "user": "first_admin_user"
+    }
+  ]
+}
+

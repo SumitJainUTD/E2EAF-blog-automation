@@ -1,0 +1,39 @@
+posts:
+  positive_post:
+    title: positive_test_title
+    content: positive_test_content
+  negative_post_with_no_title:
+    content: content_negative_post_with_no_title
+  negative_post_with_no_content:
+    title: title_negative_post_with_no_content
+
+
+users:
+  first_admin_user:
+    username: test
+    password: test
+  second_admin_user:
+    username: admin
+    password: test
+  read_only_user:
+    username: aaaa
+    password: bbbb
+  invalid_user:
+    username: invalid
+    password: invalid
+
+
+test_case:
+  positive_test:
+    enabled: true
+    test_id: 1
+    test_category: positive
+    post: positive_post
+    user: first_admin_user
+
+  negative_test_create_post_with_no_title:
+    enabled: true
+    test_id: 2
+    test_category: negative
+    post: negative_post_with_no_title
+    user: first_admin_user
