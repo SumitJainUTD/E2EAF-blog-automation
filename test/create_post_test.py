@@ -1,8 +1,6 @@
 import os
 import pytest
 from .blog_helper import BlogHelper
-from E2EAF_blog_automation.blog.blogsvc import Blog
-from E2EAF_auth_automation.auth.auth import Auth
 import logging
 
 env = os.environ.get('env')
@@ -14,10 +12,6 @@ else:
 logger = logging.getLogger(__name__)
 logger.setLevel('INFO')
 
-auth = Auth(env)
-blog = Blog(env)
-blog_helper = BlogHelper(env, auth, blog)
-
 
 @pytest.mark.parametrize(
     "test_case, username, password, title, content, slug", [
@@ -26,6 +20,8 @@ blog_helper = BlogHelper(env, auth, blog)
 def test_create_post(test_context, test_case, username, password, title, content, slug):
     logger.info("************** Start Test: " + test_case + " ***********")
     result = True
+
+    blog_helper = BlogHelper(env, test_context)
     response, login = blog_helper.create_post(username=username, password=password, title=title, content=content,
                                               slug=slug)
 
