@@ -1,6 +1,6 @@
 import pytest
 import os
-from feature_context import FeatureContext
+from .feature_context import FeatureContext
 
 
 @pytest.fixture(scope='session')

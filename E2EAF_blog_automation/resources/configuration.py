@@ -2,20 +2,21 @@ import configparser
 import os
 
 import requests
+import yaml
 
 
 class Configuration(object):
+
     def __init__(self, env):
         self.users = None
-        config = configparser.ConfigParser(allow_no_value=True)
         cwd = os.path.dirname(__file__)
-        config.read(cwd+'/config-blog.cfg')
+        filename = cwd + '/config-blog.yaml'
 
-        section = 'QA'
-        if env == 'qa':
-            section = 'QA'
-        elif env == 'staging':
-            section = 'STAGING'
+        data = {}
+        with open(filename) as file:
+            # The FullLoader parameter handles the conversion from YAML
+            # scalar values to Python the dictionary format
+            data = yaml.load(file, Loader=yaml.FullLoader)
 
-        self.base_uri = config.get(section=section, option='base_uri')
-        self.db_host = config.get(section=section, option='db_host')
+        self.base_uri = data[env]['base_uri']
+        self.db_host = data[env]['db_host']

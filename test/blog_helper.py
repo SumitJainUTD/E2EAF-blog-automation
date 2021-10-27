@@ -17,7 +17,7 @@ class BlogHelper():
             title = "title_" + rnd
         if content is not None:
             content = "content_" + rnd
-        if slug is None:
+        if slug is not None:
             slug = rnd
         post = Post(title, content, slug)
 
@@ -31,5 +31,5 @@ class BlogHelper():
             logging.error("Unable to login with give credentials")
             return None, False
 
-        headers = {"Authorization": access_token}
+        headers = {"Authorization": "Bearer " + access_token, "Content-Type": "application/json"}
         return self.blog.create_post_api(post, headers=headers), True
